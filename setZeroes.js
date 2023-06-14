@@ -28,8 +28,12 @@ var setZeroes = function (matrix) {
         if (item.indexOf(0) !== -1) {
             let indexof_ = item.indexOf(0);
             row.add(index);
-            cols.add(indexof_);
+            while (indexof_ !== -1) {
+                cols.add(indexof_);
+                indexof_ = item.indexOf(0, indexof_ + 1);
+            }
         }
+
     })
 
     matrix.forEach((item, i) => {
