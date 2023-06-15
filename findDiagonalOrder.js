@@ -18,6 +18,39 @@
  * @param {number[][]} mat
  * @return {number[]}
  */
- var findDiagonalOrder = function(mat) {
-    
+var findDiagonalOrder = function (mat) {
+    let m = mat.length;
+    let n = mat[0].length;
+    let res = new Array(m * n);
+    let i = 0, j = 0, up = true;
+    for (let k = 0; k < res.length; k++) {
+        res[k] = mat[i][j];
+        if (up) {
+            if (j === n - 1) {
+                i++;
+                up = false;
+            } else if (i === 0) {
+                j++;
+                up = false;
+            } else {
+                i--;
+                j++;
+            }
+        } else {
+            if (i === m - 1) {
+                j++;
+                up = true;
+            } else if (j === 0) {
+                i++;
+                up = true;
+            } else {
+                i++;
+                j--;
+            }
+        }
+    }
+    return res
 };
+
+let mat = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+console.log(findDiagonalOrder(mat));
