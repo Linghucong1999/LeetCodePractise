@@ -22,20 +22,56 @@
 var longestCommonPrefix = function (strs) {
     if (strs.length === 0) return "";
     let prefix = strs[0];
-    for(let i in strs){
+    for (let i in strs) {
         while (strs[i].indexOf(prefix) !== 0) {
+            console.log(strs[i]);
             prefix = prefix.slice(0, prefix.length - 1);
             if (prefix === "") return "";
         }
     }
-    // for (let i = 1; i < strs.length; i++) {
-    //     while (strs[i].indexOf(prefix) !== 0) {
-    //         prefix = prefix.slice(0, prefix.length - 1);
-    //         if (prefix === "") return "";
-    //     }
-    // }
+
     return prefix;
 };
+
+/**
+ * 分治法
+ * @param {string[]} strs
+
+ * @return {string}
+ */
+
+var longest = function (strs) {
+    if (strs.length === 0) return "";
+    return findLongstCommonPrefix(strs, 0, strs.length - 1);
+
+}
+/**
+ * 
+ * @param {string[]} strs
+ * @param {Number} start 
+ * @param {Nmber} end 
+ */
+var findLongstCommonPrefix = function (strs, start, end) {
+    if (start === end) {
+        return strs[start];
+    }
+    let mid = Math.floor((start + end) / 2);
+    let leftPrefix = findLongstCommonPrefix(strs, start, mid);
+    let rightPrefix = findLongstCommonPrefix(strs, mid + 1, end);
+    return commonPrefix(leftPrefix, rightPrefix);
+}
+/**
+ * 
+ * @param {String} str1 
+ * @param {String} str2 
+ */
+var commonPrefix = function (str1, str2) {
+    let i = 0;
+    while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
+        i++;
+    }
+    return str1.slice(0, i);
+}
 
 let str = ["flower", "flow", "flight"];
 console.log(longestCommonPrefix(str));
