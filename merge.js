@@ -37,11 +37,37 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function (nums1, m, nums2, n) {
-    nums1.splice(-m);
-    return nums1.concat(nums2).sort();
+    // nums1.splice(m);
+    // for (let i = 0; i < n; i++) {
+    //     nums1.push(nums2.pop());
+    // }
+    // return nums1.sort((a, b) => a - b);
+
+    let p1 = m - 1, p2 = n - 1    //nums1的指针，nums2的指针
+    let p = m + n - 1         //合并后的指针
+    if (m === 0) {
+        p1 = 0;
+    }
+    while (p1 >= 0 && p2 >= 0) {
+        if (nums1[p1] > nums2[p2]) {
+            nums1[p] = nums1[p1];
+            p1--;
+        } else {
+            nums1[p] = nums2[p2];
+            p2--;
+        }
+        p--;
+    }
+
+    while (p2 >= 0) {
+        nums1[p] = nums2[p2];
+        p2--;
+        p--;
+    }
+    return nums1;
 };
 
 
-let nums1 = [1, 2, 3, 0, 0, 0], m = 3, nums2 = [2, 5, 6], n = 3
+let nums1 = [2, 0], m = 1, nums2 = [1], n = 1;
 
 console.log(merge(nums1, m, nums2, n));
