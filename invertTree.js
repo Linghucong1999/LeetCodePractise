@@ -27,12 +27,34 @@ var invertTree = function (root) {
     }
 
     //交换左右子树
-    const temp = root.left;
-    root.left = root.right;
-    root.right = temp;
+    // const temp = root.left;
+    // root.left = root.right;
+    // root.right = temp;
 
-    //递归翻转左右子树
-    invertTree(root.left);
-    invertTree(root.right);
+    // //递归翻转左右子树
+    // invertTree(root.left);
+    // invertTree(root.right);
+    // return root;
+
+    const stack = [root];
+    while (stack.length > 0) {
+        const node = stack.pop();
+
+        //交换左右子树
+        const temp = node.left;
+        node.left = node.right;
+        node.right = temp;
+
+        //压入栈
+        if (node.left !== null) {
+            stack.push(node.left);
+        }
+
+        if (node.right !== null) {
+            stack.push(node.right);
+        }
+    }
+
     return root;
+
 };
