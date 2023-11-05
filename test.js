@@ -1,17 +1,25 @@
-setTimeout(() => console.log(1))
+function scan(str) {
+  let i = 0;  
+  while (i < str.length) {  
+    const char = str.charAt(i);  
+    if (Number.isInteger(parseFloat(char))) {  
+      let number = char;  
+      while (i < str.length - 1 && Number.isInteger(parseFloat(str.charAt(i + 1)))) {  
+        number += str.charAt(i + 1);  
+        i++;  
+      }  
+      return parseInt(number);  
+    }   
+    i++;  
+  }  
+  return 0;
+}
 
-new Promise(resolve => {
-  resolve()
-  console.log(2)
-}).then(() => {
-  console.log(3)
-  Promise.resolve().then(_ => {
-    console.log(4)
-  }).then(_ => {
-    Promise.resolve().then(_ => {
-      console.log(5)
-    })
-  })
-})
-
-console.log(6)
+function clearInput(obj) {  
+  let element = obj.parentElement.querySelector('input');  
+  if (element) {  
+      element.value = '';  
+  }  
+}
+const str = 'abc123abc456';
+console.log(scan(str));
