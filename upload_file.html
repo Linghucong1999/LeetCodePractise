@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 文件上传 -->
+    <h1>文件上传</h1>
+    <button id="selectFileButton">选择文件</button>
+    <button id="uploadFileButton" disabled class="upload-button">上传文件</button>
+    <input type="file" id="fileInput" multiple></input>
+</body>
+<script>
+
+    // 文件上传
+    const selectFileButton = document.getElementById('selectFileButton');
+    const uploadFileButton = document.getElementById('uploadFileButton');
+    const fileInput = document.getElementById('fileInput');
+
+    const files = [];
+
+    selectFileButton.addEventListener('click', () => {
+        fileInput.click();
+    })
+
+    fileInput.addEventListener('change', () => {
+        // 将文件添加进数组
+        console.log(fileInput.files)
+        Array.from(fileInput.files).forEach(file => {
+            if (file) files.push(file);
+        })
+    })
+</script>
+
+</html>
