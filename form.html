@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./form.css">
+</head>
+
+<body>
+    <div class="back"></div>
+    <div class="registration-form">
+        <header>
+            <h1>Sign Up</h1>
+            <p>Fill in all informations</p>
+        </header>
+        <form>
+            <div class="input-section email-section">
+                <input class="email" type="email" placeholder="ENTER YOUR E-MAIL HERE" autocomplete="off" />
+                <div class="animated-button"><span class="icon-paper-plane"><i class="fa fa-envelope-o"></i></span><span
+                        class="next-button email"><i class="fa fa-arrow-up"></i></span></div>
+            </div>
+            <div class="input-section password-section folded">
+                <input class="password" type="password" placeholder="ENTER YOUR PASSWORD HERE" />
+                <div class="animated-button"><span class="icon-lock"><i class="fa fa-lock"></i></span><span
+                        class="next-button password"><i class="fa fa-arrow-up"></i></span></div>
+            </div>
+            <div class="input-section repeat-password-section folded">
+                <input class="repeat-password" type="password" placeholder="REPEAT YOUR PASSWORD HERE" />
+                <div class="animated-button"><span class="icon-repeat-lock"><i class="fa fa-lock"></i></span><span
+                        class="next-button repeat-password"><i class="fa fa-paper-plane"></i></span></div>
+            </div>
+            <div class="success">
+                <p>ACCOUNT CREATED</p>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    // 监听 'email' 类的 input 元素的 'change', 'keyup', 'paste' 事件
+    document.querySelectorAll('.email').forEach(el => {
+        el.addEventListener('input', function () {
+            if (this.value) {
+                document.querySelector('.icon-paper-plane').classList.add("next");
+            } else {
+                document.querySelector('.icon-paper-plane').classList.remove("next");
+            }
+        });
+    });
+
+    // 为 'next-button' 类的元素添加鼠标悬停效果
+    document.querySelectorAll('.next-button').forEach(el => {
+        el.addEventListener('mouseover', function () {
+            this.style.cursor = 'pointer';
+        });
+    });
+
+    // 绑定 '.next-button.email' 的点击事件
+    document.querySelector('.next-button.email').addEventListener('click', function () {
+        console.log("Something");
+        document.querySelector('.email-section').classList.add("fold-up");
+        document.querySelector('.password-section').classList.remove("folded");
+    });
+
+    // 监听 'password' 类的 input 元素的 'change', 'keyup', 'paste' 事件
+    document.querySelectorAll('.password').forEach(el => {
+        el.addEventListener('input', function () {
+            if (this.value) {
+                document.querySelector('.icon-lock').classList.add("next");
+            } else {
+                document.querySelector('.icon-lock').classList.remove("next");
+            }
+        });
+    });
+
+    // 绑定 '.next-button.password' 的点击事件
+    document.querySelector('.next-button.password').addEventListener('click', function () {
+        console.log("Something");
+        document.querySelector('.password-section').classList.add("fold-up");
+        document.querySelector('.repeat-password-section').classList.remove("folded");
+    });
+
+    // 监听 'repeat-password' 类的 input 元素的 'change', 'keyup', 'paste' 事件
+    document.querySelectorAll('.repeat-password').forEach(el => {
+        el.addEventListener('input', function () {
+            if (this.value) {
+                document.querySelector('.icon-repeat-lock').classList.add("next");
+            } else {
+                document.querySelector('.icon-repeat-lock').classList.remove("next");
+            }
+        });
+    });
+
+    // 绑定 '.next-button.repeat-password' 的点击事件
+    document.querySelector('.next-button.repeat-password').addEventListener('click', function () {
+        console.log("Something");
+        document.querySelector('.repeat-password-section').classList.add("fold-up");
+        document.querySelector('.success').style.marginTop = '0';
+    });
+
+</script>
+
+</html>
